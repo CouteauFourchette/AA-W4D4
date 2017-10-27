@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20171026235626) do
+ActiveRecord::Schema.define(version: 20171027004043) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -37,6 +37,14 @@ ActiveRecord::Schema.define(version: 20171026235626) do
     t.datetime "updated_at", null: false
     t.integer "user_id"
     t.index ["user_id"], name: "index_cats_on_user_id"
+  end
+
+  create_table "session_tokens", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.string "token", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["token"], name: "index_session_tokens_on_token"
   end
 
   create_table "users", force: :cascade do |t|
